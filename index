@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Taskflow</title>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+</head>
+
+<body>
+<div id="loading-screen">
+  <p>Connecting to Firebase...</p>
+</div>
+
+<div id="app" style="display:none">
+  <h2>Taskflow Loaded ✅</h2>
+</div>
+
+<script>
+// 🔥 YOUR FIREBASE CONFIG (WORKING)
+const firebaseConfig = {
+  apiKey: "AIzaSyBMLlf2ebxdk5QK9KRO2xjjQHoQ8qEFRzM",
+  authDomain: "taskflow-11532.firebaseapp.com",
+  projectId: "taskflow-11532",
+  storageBucket: "taskflow-11532.firebasestorage.app",
+  messagingSenderId: "208599939921",
+  appId: "1:208599939921:web:449c39aa592bd329e03170",
+  measurementId: "G-573MLBVFZB"
+};
+
+// 🚀 INIT FIREBASE
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();
+
+// ✅ TEST CONNECTION
+db.collection("test").get()
+.then(() => {
+  document.getElementById("loading-screen").style.display = "none";
+  document.getElementById("app").style.display = "block";
+})
+.catch(err => {
+  document.getElementById("loading-screen").innerHTML =
+    "Firebase error: " + err.message;
+  console.error(err);
+});
+</script>
+
+</body>
+</html>
